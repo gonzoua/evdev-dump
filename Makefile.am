@@ -24,5 +24,5 @@ BUILT_SOURCES = event2str.inc
 CLEANFILES = event2str.inc
 dist_noinst_DATA = event2str.inc.sh
 
-event2str.inc: event2str.inc.sh @INPUT_H_PATH@
+event2str.inc: event2str.inc.sh @INPUT_H_PATH@ @INPUT_EVENT_CODES_H_PATH@
 	@BASH@ $^ > $@

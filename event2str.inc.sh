@@ -65,8 +65,8 @@ function print_type_case() {
 CUT
 
     cat $INPUT_H |
-        egrep "^#define ${type_synonym_regexp}_" |
-        cut -d' ' -f2- |
+        egrep "^#define	${type_synonym_regexp}_" |
+        cut -d'	' -f2- |
         egrep -v "^${type_synonym_regexp}_$IGNORE_CODE_REGEXP" |
         gawk --non-decimal-data '{printf "%s\t%d\n", $1, $2}' |
         sort --key=2 --numeric-sort --uniq |    # remove duplicated code entries
@@ -110,7 +110,7 @@ event2str(const struct input_event     *e,
 CUT
 
     cat $INPUT_H |
-        egrep '^#define EV_' |
+        egrep '^#define	EV_' |
         cut -d_ -f2- |
         egrep -v "^$IGNORE_TYPE_REGEXP" |
         gawk --non-decimal-data '{printf "%s\t%d\n", $1, $2}' |
@@ -143,4 +143,8 @@ cat <<CUT
  */
 
 CUT
-print_event2str $1
+
+TMP_INPUT_H=$(mktemp)
+cat $* > $TMP_INPUT_H
+print_event2str $TMP_INPUT_H
+rm -f $TMP_INPUT_H

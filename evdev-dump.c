@@ -27,7 +27,6 @@
 #include <stdbool.h>
 #include <assert.h>
 #include <errno.h>
-#include <error.h>
 #include <string.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -36,7 +35,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <linux/input.h>
+#include <dev/evdev/input.h>
 
 #define ERROR(_fmt, _args...) \
     fprintf(stderr, _fmt "\n", ##_args)
@@ -85,7 +84,7 @@ usage(FILE *stream)
 "Signals:\n"
 "  USR1/USR2        pause/resume the output\n"
 "\n",
-        program_invocation_short_name);
+        "evdev-dump");
 }
 
 

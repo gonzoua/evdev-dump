@@ -58,13 +58,19 @@ fi
 
 # Checks for header files.
 AC_HEADER_STDC
-AC_CHECK_HEADERS([linux/input.h])
+AC_CHECK_HEADERS([dev/evdev/input.h])
 
 # Check for input files.
-AC_CHECK_FILE([/usr/include/linux/input.h],
-              [INPUT_H_PATH="/usr/include/linux/input.h"], \
-              [AC_MSG_ERROR([/usr/include/linux/input.h not found])])
+AC_CHECK_FILE([/usr/include/dev/evdev/input.h],
+              [INPUT_H_PATH="/usr/include/dev/evdev/input.h"], \
+              [AC_MSG_ERROR([/usr/include/dev/evdev/input.h not found])])
 AC_SUBST([INPUT_H_PATH])
+AC_CHECK_FILE([/usr/include/dev/evdev/input-event-codes.h],
+              [INPUT_EVENT_CODES_H_PATH="/usr/include/dev/evdev/input-event-codes.h"], \
+              [AC_MSG_ERROR([/usr/include/dev/evdev/input-event-codes.h not found])])
+AC_SUBST([INPUT_EVENT_CODES_H_PATH])
+
+
 
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT
